@@ -11,23 +11,10 @@ const dbConfig = {
 
 export const db = new Sequelize(dbConfig.nome, dbConfig.user, dbConfig.pass, {
     host: dbConfig.host,
-    dialect : "mysql"
+    dialect : "mysql", 
+    define : {
+        timestamps : false,
+        freezeTableName : true
+    }
 })
 
-
-export const objetoDeConfig = (nomeTabela) => {
-    return {
-        freezeTableName: true, 
-        tableName: nomeTabela, 
-        timestamps: false, 
-        sync: { force: false }
-    }
-}
-
-export const objetoNotas = {
-    freezeTableName: true, 
-        tableName: 'notas', 
-        timestamps: false, 
-        primaryKey : false,
-        sync: { force: false }
-}

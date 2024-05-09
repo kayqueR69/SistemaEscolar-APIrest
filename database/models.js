@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import { db, objetoDeConfig, objetoNotas } from "./dbconfig.js";
+import { db } from "./dbconfig.js";
 
 const professor = db.define('professor', {
 
@@ -13,7 +13,7 @@ const professor = db.define('professor', {
     nome : Sequelize.STRING(40),
     especializacao : Sequelize.STRING(255),
 
-}, objetoDeConfig('professor'))
+})
 
 const turma = db.define('turma', {
     id : {
@@ -30,7 +30,7 @@ const turma = db.define('turma', {
             onDelete : 'CASCADE'
         }
     }
-}, objetoDeConfig('turma'))
+})
 
 
 const aluno = db.define('aluno', {
@@ -47,10 +47,10 @@ const aluno = db.define('aluno', {
         references : {
             model : turma,
             key : 'id',
-            onDelete : 'CASCADE'
+            onDelete : 'SET NULL'
         }
     }
-}, objetoDeConfig('aluno'))
+})
 
 const disciplina = db.define('disciplina', {
     id : {
@@ -60,7 +60,7 @@ const disciplina = db.define('disciplina', {
         primaryKey : true
     },
     nome : Sequelize.STRING(40),
-    descricao : Sequelize.STRING(40),
+    descricao : Sequelize.STRING(255),
 
     idTurma : {
         type : Sequelize.INTEGER,
@@ -71,7 +71,7 @@ const disciplina = db.define('disciplina', {
         }
     }
 
-}, objetoDeConfig('disciplina'))
+})
 
 const notas = db.define('notas', {
     nota1 : Sequelize.FLOAT,
@@ -93,8 +93,18 @@ const notas = db.define('notas', {
             onDelete : 'CASCADE'
         }
     }
-}, objetoNotas)
+})
 
 notas.removeAttribute('id')
+
+async function criarTabelas() {
+    await professor.sync({force : false})
+    await turma.sync({force : false})
+    await aluno.sync({force : false})
+    await disciplina.sync({force : false})
+    await notas.sync({force : false})
+}
+
+criarTabelas()
 
 export { professor, turma, aluno, disciplina, notas }
