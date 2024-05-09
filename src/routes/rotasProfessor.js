@@ -43,7 +43,7 @@ export const rotasProf = {
     },
 
     deleteUserProf : async (req,res) => {
-        const id = req.body.id
+        const id = req.params.id
 
         const dados = await userProf.delete(id)
 

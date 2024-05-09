@@ -97,14 +97,17 @@ const notas = db.define('notas', {
 
 notas.removeAttribute('id')
 
-async function criarTabelas() {
-    await professor.sync({force : false})
-    await turma.sync({force : false})
-    await aluno.sync({force : false})
-    await disciplina.sync({force : false})
-    await notas.sync({force : false})
-}
+professor.hasMany(turma,{foreignKey : "idProfessor"})
+turma.hasMany(aluno,{foreignKey : "idTurma"})
+turma.hasMany(disciplina,{foreignKey : "idTurma"})
+aluno.hasMany(notas,{foreignKey : "idAluno"})
+disciplina.hasMany(notas,{foreignKey : "idDisciplina"})
+turma.belongsTo(professor, {onDelete: 'CASCADE'})
+aluno.belongsTo(turma,{onDelete: 'SET NULL'})
+disciplina.belongsTo(turma,{onDelete: 'CASCADE'})
+    notas.belongsTo(disciplina,{onDelete: 'CASCADE'})
+notas.belongsTo(aluno,{onDelete: 'CASCADE'})
 
-criarTabelas()
+db.sync({ force : false})
 
 export { professor, turma, aluno, disciplina, notas }

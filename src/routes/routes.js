@@ -15,7 +15,7 @@ router.get('/', (req,res) => {
 router.post('/prof/cadastro', rotasProf.cadastro)
 router.post('/prof/login', rotasProf.login)
 router.post('/prof/alterar', rotasProf.alterarDado)
-router.delete('/prof/deleteuser', rotasProf.deleteUserProf)
+router.delete('/prof/deleteuser/:id', rotasProf.deleteUserProf)
 router.post('/prof/criarturma', rotasProf.criarTurma)
 router.get('/prof/alunos/:idTurma', rotasProf.getAlunos)
 router.delete('/prof/delturma', rotasProf.deletarTurma)
