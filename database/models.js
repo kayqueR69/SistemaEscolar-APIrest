@@ -97,16 +97,16 @@ const notas = db.define('notas', {
 
 notas.removeAttribute('id')
 
-professor.hasMany(turma,{foreignKey : "idProfessor"})
-turma.hasMany(aluno,{foreignKey : "idTurma"})
-turma.hasMany(disciplina,{foreignKey : "idTurma"})
-aluno.hasMany(notas,{foreignKey : "idAluno"})
-disciplina.hasMany(notas,{foreignKey : "idDisciplina"})
-turma.belongsTo(professor, {onDelete: 'CASCADE'})
-aluno.belongsTo(turma,{onDelete: 'SET NULL'})
-disciplina.belongsTo(turma,{onDelete: 'CASCADE'})
-    notas.belongsTo(disciplina,{onDelete: 'CASCADE'})
-notas.belongsTo(aluno,{onDelete: 'CASCADE'})
+professor.hasMany(turma,{foreignKey : "idProfessor", onDelete: 'CASCADE'})
+turma.hasMany(aluno,{foreignKey : "idTurma", onDelete : "SET NULL"})
+turma.hasMany(disciplina,{foreignKey : "idTurma", onDelete: 'CASCADE'})
+aluno.hasMany(notas,{foreignKey : "idAluno", onDelete: 'CASCADE'})
+disciplina.hasMany(notas,{foreignKey : "idDisciplina", onDelete: 'CASCADE'})
+turma.belongsTo(professor, {foreignKey : "idProfessor", onDelete: 'CASCADE'})
+aluno.belongsTo(turma,{foreignKey : "idTurma",onDelete: 'SET NULL'})
+disciplina.belongsTo(turma,{foreignKey : "idTurma",onDelete: 'CASCADE'})
+notas.belongsTo(disciplina,{foreignKey : "idDisciplina",onDelete: 'CASCADE'})
+notas.belongsTo(aluno,{foreignKey : "idAluno",onDelete: 'CASCADE'})
 
 db.sync({ force : false})
 
