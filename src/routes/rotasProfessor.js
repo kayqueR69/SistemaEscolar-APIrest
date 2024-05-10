@@ -94,7 +94,6 @@ export const rotasProf = {
         const alunos = await userAluno.readByTurma(idTurma)
 
         const idDisciplinaCriada = dados.infos.id
-        console.log(idDisciplinaCriada)
 
         for (let c = 1; c < alunos.qtdAlunos + 1; c++) {
             await nota.create(c,idDisciplinaCriada)

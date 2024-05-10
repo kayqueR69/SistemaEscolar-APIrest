@@ -76,8 +76,6 @@ export const rotasAluno = {
             await nota.create(id,c)
         }
 
-        console.log(dados.estado)
-
         if (dados.estado) {
             res.status(200).send('VOCÊ AGORA FAZ PARTE DA TURMA ' + idTurma)
         } else {
