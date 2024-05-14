@@ -12,7 +12,7 @@ export const userAluno = {
         if (nome) {
 
             await aluno.create({
-                nome : nome,
+                nome : nome.toUpperCase(),
                 idTurma : idTurma
             }, {omitNull : false}).then(user => {
 
@@ -88,7 +88,7 @@ export const userAluno = {
             await aluno.findAll({
                 where : {
                     id : id,
-                    nome : nome
+                    nome : nome.toUpperCase()
                 }
             }).then(user => {
                 if (user.length > 0) {

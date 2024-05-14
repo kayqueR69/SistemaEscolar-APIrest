@@ -15,5 +15,5 @@ app.options('*', cors())
 
 app.use(router)
 
-app.listen(3000, () => {console.log('Server rodando em ' + process.env.URL_API)})
+app.listen(3001, () => {console.log('Server rodando em ' + process.env.URL_API)})
 
