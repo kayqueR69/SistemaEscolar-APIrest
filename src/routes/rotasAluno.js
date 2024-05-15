@@ -58,7 +58,7 @@ export const rotasAluno = {
         const results = []
 
         for (let c = 1; c < classes.length + 1; c++) {
-            results.push({turma : classes[c], materias : await disciplinas.readByTurma(c)})
+            results.push({turma : classes[c-1], materias : await disciplinas.readByTurma(c)})
         }
 
         res.status(200).json(results)
