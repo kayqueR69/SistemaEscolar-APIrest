@@ -65,6 +65,7 @@ export const rotasAluno = {
     },
 
     vincularTurma : async (req,res) => {
+
         const {id,idTurma} = req.body
 
         const dados = await userAluno.update(id,'idTurma',idTurma)
@@ -77,9 +78,9 @@ export const rotasAluno = {
         }
 
         if (dados.estado) {
-            res.status(200).send('VOCÊ AGORA FAZ PARTE DA TURMA ' + idTurma)
+            res.status(200).json({ status : true, menssagem : 'VOCÊ AGORA FAZ PARTE DA TURMA ' + idTurma})
         } else {
-            res.status(400).send('ERRO AO ENTRAR NA TURMA ' + idTurma)
+            res.status(400).json({ status : false , menssagem : 'ERRO AO ENTRAR NA TURMA ' + idTurma})
         }
     },
 
