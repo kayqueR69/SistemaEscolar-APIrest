@@ -1,3 +1,4 @@
+import { where } from "sequelize";
 import { turma } from "../models.js";
 
 export const turmas = {
@@ -52,6 +53,22 @@ export const turmas = {
         }
 
         return resultados
+    },
+
+    readByIdProf : async (idProf) => {
+        let turmas = []
+
+        if(idProf) {
+            await turma.findAll({
+                where : {
+                    idProfessor : idProf
+                }
+            }).then(results => {
+                turmas = results
+            }).catch(err => console.log('ERRO NA CONSULTA ' + err))
+        }
+
+        return turmas;
     },
 
     update : async (id,idProf,novoIdProf) => {

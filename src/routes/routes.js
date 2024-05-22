@@ -14,9 +14,11 @@ router.get('/', (req,res) => {
 
 router.post('/prof/cadastro', rotasProf.cadastro)
 router.post('/prof/login', rotasProf.login)
+router.get('/prof/getinfos/:id/:nome', rotasProf.getInfos)
 router.put('/prof/alterar', rotasProf.alterarDado)
 router.delete('/prof/deleteuser/:id', rotasProf.deleteUserProf)
 router.post('/prof/criarturma', rotasProf.criarTurma)
+router.get('/prof/getturmas/:id', rotasProf.getTurmasByIdProf)
 router.get('/prof/alunos/:idTurma', rotasProf.getAlunos)
 router.delete('/prof/delturma', rotasProf.deletarTurma)
 router.post('/prof/adddisciplina', rotasProf.addDisciplina)

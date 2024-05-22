@@ -54,6 +54,14 @@ export const rotasProf = {
         }
     },
 
+    getInfos : async (req,res) => {
+        const {id , nome} = req.params
+
+        const dados = await userProf.readWhere(id,nome)
+
+        res.status(200).json(dados)
+    },
+
     criarTurma : async (req,res) => {
         const id = req.body.idProfessor
 
@@ -63,6 +71,18 @@ export const rotasProf = {
             res.status(200).json(dados)
         } else {
             res.status(400).json(dados)
+        }
+    },
+
+    getTurmasByIdProf : async (req,res) => {
+        const id = req.params.id
+
+        const classes = await turmas.readByIdProf(id)
+        
+        if (turmas) {
+            res.status(200).json(classes)
+        } else {
+            res.status(400).json(classes)
         }
     },
 

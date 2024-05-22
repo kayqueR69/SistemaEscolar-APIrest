@@ -83,7 +83,7 @@ export const userProf = {
                     resultado.mensagem = 'NENHUM USUARIO ALTERADO'
                 }
             }).catch(error => {
-                console.log('ERRO AO ALTERAR USUARIO PROFESSOR')
+                console.log('ERRO AO ALTERAR USUARIO PROFESSOR ' + error)
                 resultado.mensagem = 'NENHUM USUARIO ALTERADO'
             })
         }
