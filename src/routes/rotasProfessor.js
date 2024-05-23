@@ -55,9 +55,9 @@ export const rotasProf = {
     },
 
     getInfos : async (req,res) => {
-        const {id , nome} = req.params
+        const {id} = req.params
 
-        const dados = await userProf.readWhere(id,nome)
+        const dados = await userProf.readById(id)
 
         res.status(200).json(dados)
     },

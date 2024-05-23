@@ -61,6 +61,28 @@ export const userProf = {
         
     },
 
+    readById : async (id) => {
+        let resultado = {}
+
+        if (id) {
+
+            await professor.findAll({
+                where : {
+                    id : id,
+                }
+            }).then(user => {
+                if (user.length > 0) {
+                    resultado = user[0]
+                }
+            }).catch(error => {
+                console.log('ERRO NA CONSULTA ' + error)
+            })
+
+        }
+
+        return resultado
+    },
+
     update : async (id,campo,valor) => {
         const resultado = {
             estado : false,

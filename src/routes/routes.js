@@ -14,7 +14,7 @@ router.get('/', (req,res) => {
 
 router.post('/prof/cadastro', rotasProf.cadastro)
 router.post('/prof/login', rotasProf.login)
-router.get('/prof/getinfos/:id/:nome', rotasProf.getInfos)
+router.get('/prof/getinfos/:id', rotasProf.getInfos)
 router.put('/prof/alterar', rotasProf.alterarDado)
 router.delete('/prof/deleteuser/:id', rotasProf.deleteUserProf)
 router.post('/prof/criarturma', rotasProf.criarTurma)
