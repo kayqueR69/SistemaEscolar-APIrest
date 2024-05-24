@@ -85,6 +85,7 @@ export const rotasAluno = {
     },
 
     infosAluno : async (req,res) => {
+
         const {id,idTurma} = req.params
 
         let dadosAluno = await userAluno.readById(id)
@@ -94,18 +95,29 @@ export const rotasAluno = {
         dadosTurma = dadosTurma.infos[0]
 
         const materias = await disciplinas.readByTurma(idTurma);
+        const listaDisciplinas = []
+
+        for (let c = 0; c < materias.length; c++) {
+            listaDisciplinas.push({
+
+                id : materias[c].id,
+                nome : materias[c].nome,
+                descricao : materias[c].descricao,
+                idTurma : materias[c].idTurma,
+                notas : {}
+            })
+        }
         
         const notasMateria = []
 
-        for (let c = 1;c < materias.length + 1; c++) {
-            notasMateria.push(await nota.readWhere(id,c))
+        for (let c = 0; c < materias.length; c++) {
+            listaDisciplinas[c].notas = (await nota.readWhere(id , materias[c].id))
         }
 
         const dados = {
             dadosAluno : dadosAluno,
             dadosTurma : dadosTurma,
-            disciplinas : materias,
-            notas : notasMateria
+            disciplinas : listaDisciplinas,
         }
 
         res.status(200).json(dados)
