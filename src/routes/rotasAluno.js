@@ -70,11 +70,10 @@ export const rotasAluno = {
 
         const dados = await userAluno.update(id,'idTurma',idTurma)
 
-        const numDiciplinas = await disciplinas.readByTurma(idTurma)
-        let num = numDiciplinas.length
+        const listaDisciplinas = await disciplinas.readByTurma(idTurma)
 
-        for (let c = 1; c < num + 1; c++) {
-            await nota.create(id,c)
+        for (let c = 0; c < listaDisciplinas.length; c++) {
+            await nota.create(id, listaDisciplinas[c].id)
         }
 
         if (dados.estado) {

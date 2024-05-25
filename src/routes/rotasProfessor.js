@@ -158,6 +158,20 @@ export const rotasProf = {
         }
     },
 
+    getNota : async (req,res) => {
+
+        const { idAluno,idDisciplina } = req.params
+
+        const resultado = await nota.readWhere(idAluno, idDisciplina)
+
+        if (resultado) {
+            res.status(200).json(resultado)
+        } else {
+            res.status(400).json(resultado)
+        }
+
+    },
+
     atribuirNota : async (req,res) => {
         const {idAluno,idDisciplina,numNota,valor} = req.body
 

@@ -25,6 +25,7 @@ router.post('/prof/adddisciplina', rotasProf.addDisciplina)
 router.get('/prof/getdisciplinas/:idTurma', rotasProf.getDisciplinas)
 router.put('/prof/updatedisciplina', rotasProf.updateDisciplina)
 router.delete('/prof/deldisciplina', rotasProf.deletarDisciplina)
+router.get('/prof/getnota/:idAluno/:idDisciplina', rotasProf.getNota)
 router.put('/prof/atribuirnota', rotasProf.atribuirNota)
 
 // rotas de aluno
