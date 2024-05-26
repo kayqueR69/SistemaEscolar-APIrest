@@ -115,8 +115,8 @@ export const rotasProf = {
 
         const idDisciplinaCriada = dados.infos.id
 
-        for (let c = 1; c < alunos.qtdAlunos + 1; c++) {
-            await nota.create(c,idDisciplinaCriada)
+        for (let c = 0; c < alunos.qtdAlunos; c++) {
+            await nota.create(alunos.alunos[c].id,idDisciplinaCriada)
         }
 
         if (dados.criada) {
