@@ -94,6 +94,13 @@ const disciplina = db.define('disciplina', {
 const notas = db.define('notas', {
     nota1 : Sequelize.FLOAT,
     nota2 : Sequelize.FLOAT,
+    
+    media : {
+        type : Sequelize.VIRTUAL,
+        get () {
+            return ((this.nota1 + this.nota2) / 2)
+        }
+    },
 
     idAluno : {
         type : Sequelize.INTEGER,
